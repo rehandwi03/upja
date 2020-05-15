@@ -16,7 +16,8 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+
+        // dd($request->all());
         $this->validate($request, [
             'role_name' => 'required|string',
             'role_desc' => 'required|string',

@@ -14,8 +14,12 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-
+// endpoint role
 $router->get('/roles', 'RoleController@index');
 $router->post('/roles', 'RoleController@store');
 $router->put('/roles/{id}', 'RoleController@update');
 $router->delete('/roles/{id}', 'RoleController@destroy');
+
+// endpoint admin
+$router->get('/admins', 'AdminController@index');
+$router->post('/admins', 'AdminController@store');

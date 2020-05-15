@@ -10,5 +10,5 @@ class MSAdmin extends Model
     const UPDATED_AT = 'admin_updated';
     protected $table = 'ms_admin';
     protected $primaryKey = 'id_admin';
-    protected $guarded = [];
+    protected $fillable = ['admin_username', 'admin_password', 'admin_fullname', 'admin_hide', 'id_role'];
 }
