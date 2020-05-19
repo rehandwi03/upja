@@ -24,3 +24,10 @@ $router->delete('/roles/{id}', 'RoleController@destroy');
 $router->get('/admins', 'AdminController@index');
 $router->post('/admins', 'AdminController@store');
 $router->post('/admins/hide', 'AdminController@hide');
+
+// endpoint user
+$router->get('/users', 'UserController@index');
+$router->post('/users', 'UserController@store');
+
+// endpoint login
+$router->post('/auth/login', 'AuthController@login');

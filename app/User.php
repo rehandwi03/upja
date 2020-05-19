@@ -17,8 +17,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
+    protected $table = 'ms_users';
     protected $fillable = [
-        'name', 'email',
+        'username', 'password', 'id_role'
     ];
 
     /**
@@ -29,4 +30,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(MSRole::class, 'id_role');
+    }
 }

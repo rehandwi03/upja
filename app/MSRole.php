@@ -12,4 +12,9 @@ class MSRole extends Model
     protected $fillable = ['role_name', 'role_desc', 'role_created', 'role_updated'];
     protected $hidden = ['id'];
     protected $primaryKey = 'id_role';
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'id_role');
+    }
 }
