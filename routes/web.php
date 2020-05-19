@@ -23,3 +23,4 @@ $router->delete('/roles/{id}', 'RoleController@destroy');
 // endpoint admin
 $router->get('/admins', 'AdminController@index');
 $router->post('/admins', 'AdminController@store');
+$router->post('/admins/hide', 'AdminController@hide');

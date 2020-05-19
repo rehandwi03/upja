@@ -64,5 +64,7 @@ class AdminController extends Controller
         $admin->update([
             'admin_hide' => 1
         ]);
+        $data = ["Success"];
+        return response()->json($data, 204);
     }
 }
