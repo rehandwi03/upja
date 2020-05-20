@@ -5,6 +5,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /app
 COPY . /app
 RUN composer install
+RUN php key:generate
 
 CMD php -S localhost:8080 -t public
 EXPOSE 8080
