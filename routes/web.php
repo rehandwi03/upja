@@ -14,20 +14,29 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-// endpoint role
-$router->get('/roles', 'RoleController@index');
-$router->post('/roles', 'RoleController@store');
-$router->put('/roles/{id}', 'RoleController@update');
-$router->delete('/roles/{id}', 'RoleController@destroy');
-
-// endpoint admin
-$router->get('/admins', 'AdminController@index');
-$router->post('/admins', 'AdminController@store');
-$router->post('/admins/hide', 'AdminController@hide');
-
-// endpoint user
-$router->get('/users', 'UserController@index');
-$router->post('/users', 'UserController@store');
-
-// endpoint login
+// endpoint auth
 $router->post('/auth/login', 'AuthController@login');
+
+$router->group(
+    ['middleware' => 'jwt.auth'],
+    function () use ($router) {
+        // endpoint role
+        $router->get('/roles', 'RoleController@index');
+        $router->post('/roles', 'RoleController@store');
+        $router->put('/roles/{id}', 'RoleController@update');
+        $router->delete('/roles/{id}', 'RoleController@destroy');
+
+        // endpoint admin
+        $router->get('/admins', 'AdminController@index');
+        $router->post('/admins', 'AdminController@store');
+        $router->post('/admins/hide', 'AdminController@hide');
+
+        // endpoint user
+        $router->get('/users', 'UserController@index');
+        $router->post('/users', 'UserController@store');
+
+        // endpoint farmer
+        $router->get('/farmers', 'FarmerController@index');
+        $router->post('/farmers', 'FarmerController@store');
+    }
+);

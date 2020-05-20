@@ -11,4 +11,7 @@ class MSFarmer extends Model
     protected $guarded = [];
     protected $primaryKey = 'id_farmer';
     protected $table = 'ms_farmer';
+    protected $hidden = [
+        'farmer_password',
+    ];
 }

@@ -10,24 +10,10 @@ use App\User;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
-    protected function jwt(User $user)
-    {
-        $payload = [
-            'iss' => "lumen-jwt", // Issuer of the token
-            'id' => $user->id, // Subject of the token
-            'role' => $user->role->role_name,
-            'iat' => time(), // Time when JWT was issued. 
-            'exp' => time() + 60 * 60 // Expiration time
-        ];
-
-        // As you can see we are passing `JWT_SECRET` as the second parameter that will 
-        // be used to decode the token in the future.
-        return JWT::encode($payload, env('JWT_SECRET'));
-    }
-
     public function login(Request $request)
     {
         // dd($request);
@@ -45,8 +31,13 @@ class AuthController extends Controller
             return $this->login_admin($request->username, $request->password);
         }
         if ($request->has('upja_phone')) {
-            // return $this->login_upja($request->upja_phone, $request->password);
+            return $this->login_upja($request->upja_phone, $request->password);
         }
+    }
+
+    public function logout()
+    {
+        dd(JWT::getToken());
     }
 
     private function login_admin($username, $password)
@@ -135,7 +126,7 @@ class AuthController extends Controller
             ];
             return response()->json($response, 401);
         }
-        if (Hash::check($password, $farmer->password)) {
+        if (Hash::check($password, $farmer->farmer_password)) {
             $payload = [
                 'iss' => "lumen-jwt", // Issuer of the token
                 'id' => $farmer->id_farmer, // Subject of the token
