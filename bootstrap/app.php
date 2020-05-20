@@ -60,6 +60,8 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('permission');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +83,8 @@ $app->configure('app');
 // ]);
 $app->routeMiddleware([
     'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
+    'role'       => Spatie\Permission\Middlewares\RoleMiddleware::class,
+    'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
 ]);
 
 $app->middleware([
@@ -97,10 +101,12 @@ $app->middleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
+$app->alias('cache', \Illuminate\Cache\CacheManager::class);  // if you don't have this already
 
 // $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(Spatie\Permission\PermissionServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
