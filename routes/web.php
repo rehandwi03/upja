@@ -16,6 +16,9 @@ $router->get('/', function () use ($router) {
 });
 // endpoint auth
 $router->post('/auth/login', 'AuthController@login');
+$router->get('/health', function () {
+    return "200 OK";
+});
 
 $router->group(
     ['middleware' => 'jwt.auth'],
