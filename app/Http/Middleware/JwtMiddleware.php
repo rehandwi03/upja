@@ -39,7 +39,7 @@ class JwtMiddleware
     {
         $token = $request->bearerToken();
         $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
-        dd($credentials);
+        // dd($credentials);
         if (!$token) {
             // Unauthorized response if token not there
             return [
@@ -60,7 +60,7 @@ class JwtMiddleware
                 'error' => 'An error while decoding token.'
             ];
         }
-        $request->request->add(['auth' => ['user' => $credentials->user, 'desc' => $credentials->desc]]);
+        $request->request->add(['auth' => ['id' => $credentials->id]]);
         return $next($request);
     }
 }
