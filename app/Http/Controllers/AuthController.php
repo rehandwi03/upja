@@ -62,7 +62,7 @@ class AuthController extends Controller
             $respon = [
                 "message" => "login_success",
                 "result" => [
-                    "token" => JWT::encode($payload, env('JWT_SECRET'))
+                    "token" => JWT::encode($payload, env('APP_KEY'))
                 ]
             ];
             return response()->json($respon, 200);
@@ -99,7 +99,7 @@ class AuthController extends Controller
             $respon = [
                 "message" => "login_success",
                 "result" => [
-                    "token" => JWT::encode($payload, env('JWT_SECRET'))
+                    "token" => JWT::encode($payload, env('APP_KEY'))
                 ]
             ];
             return response()->json($respon, 200);
@@ -136,7 +136,7 @@ class AuthController extends Controller
             $respon = [
                 "message" => "login_success",
                 "result" => [
-                    "token" => JWT::encode($payload, env('JWT_SECRET'))
+                    "token" => JWT::encode($payload, env('APP_KEY'))
                 ]
             ];
             return response()->json($respon, 200);

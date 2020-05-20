@@ -38,7 +38,7 @@ class JwtMiddleware
     public function handle($request, Closure $next, $guard = null)
     {
         $token = $request->bearerToken();
-        $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
+        // $credentials = JWT::decode($token, env('APP_KEY'), ['HS256']);
         // dd($credentials);
         if (!$token) {
             // Unauthorized response if token not there
@@ -48,7 +48,7 @@ class JwtMiddleware
             ];
         }
         try {
-            $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
+            $credentials = JWT::decode($token, env('APP_KEY'), ['HS256']);
         } catch (ExpiredException $e) {
             return [
                 'code' => 400,
