@@ -42,7 +42,7 @@ class AuthController extends Controller
 
     private function login_admin($username, $password)
     {
-        $admin = MSAdmin::where('admin_username', '=', $username)->first();
+        $admin = MSAdmin::with('role')->where('admin_username', '=', $username)->first();
         if (!$admin) {
             $response = [
                 "message" => "login_failed",
@@ -56,6 +56,7 @@ class AuthController extends Controller
             $payload = [
                 'iss' => "lumen-jwt", // Issuer of the token
                 'id' => $admin->id_admin, // Subject of the token
+                'role' => $admin->role->role_name,
                 'iat' => time(), // Time when JWT was issued. 
                 'exp' => time() + 60 * 60 // Expiration time
             ];

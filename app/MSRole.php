@@ -13,8 +13,8 @@ class MSRole extends Model
     protected $hidden = ['id'];
     protected $primaryKey = 'id_role';
 
-    public function user()
+    public function admin()
     {
-        return $this->hasMany(User::class, 'id_role');
+        return $this->hasMany(MSAdmin::class, 'id_role');
     }
 }

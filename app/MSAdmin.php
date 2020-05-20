@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MSAdmin extends Model
 {
@@ -11,4 +12,9 @@ class MSAdmin extends Model
     protected $table = 'ms_admin';
     protected $primaryKey = 'id_admin';
     protected $fillable = ['admin_username', 'admin_password', 'admin_fullname', 'admin_hide', 'id_role'];
+
+    public function role()
+    {
+        return $this->BelongsTo(MSRole::class, 'id_role');
+    }
 }

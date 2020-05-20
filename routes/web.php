@@ -23,6 +23,9 @@ $router->get('/health', function () {
 $router->group(
     ['middleware' => 'jwt.auth'],
     function () use ($router) {
+        $router->group(['middleware' => 'admin'], function () use ($router) {
+            $router->get('/farmers', 'FarmerController@index');
+        });
         // endpoint role
         $router->get('/roles', 'RoleController@index');
         $router->post('/roles', 'RoleController@store');
@@ -39,7 +42,7 @@ $router->group(
         $router->post('/users', 'UserController@store');
 
         // endpoint farmer
-        $router->get('/farmers', 'FarmerController@index');
+
         $router->post('/farmers', 'FarmerController@store');
     }
 );
