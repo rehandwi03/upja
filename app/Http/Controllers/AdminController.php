@@ -55,16 +55,21 @@ class AdminController extends Controller
         return response()->json($admin, 200);
     }
 
-    public function hide(Request $request)
+    public function hide(Request $request, $id)
     {
         $this->validate($request, [
-            'id_admin' => 'required|string|numeric',
+            'admin_hide' => 'required|string|numeric',
         ]);
-        $admin = MSAdmin::findOrFail($request->id_admin);
-        $admin->update([
-            'admin_hide' => 1
-        ]);
-        $data = ["Success"];
-        return response()->json($data, 204);
+        $admin = MSAdmin::findOrFail($id);
+        try {
+            $admin->update([
+                'admin_hide' => $request->admin_hide
+            ]);
+        } catch (\Throwable $th) {
+            $respon = ["message" => "can't change hide code"];
+            return response()->json($respon, 400);
+        }
+        $respon = ["message" => "success"];
+        return response()->json($respon, 200);
     }
 }

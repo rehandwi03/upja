@@ -34,7 +34,7 @@ $router->group(
         // endpoint admin
         $router->get('/admins', 'AdminController@index');
         $router->post('/admins', 'AdminController@store');
-        $router->post('/admins/hide', 'AdminController@hide');
+        $router->post('/admins/hide/{id}', 'AdminController@hide');
 
         // endpoint user
         $router->get('/users', 'UserController@index');
@@ -46,5 +46,6 @@ $router->group(
         $router->post('/farmers', 'FarmerController@store');
         $router->patch('/farmers/status/{id}', 'FarmerController@farmer_status');
         $router->patch('/farmers/hide/{id}', 'FarmerController@farmer_hide');
+        $router->patch('/farmers/verify/{id}', 'FarmerController@verify_code');
     }
 );
