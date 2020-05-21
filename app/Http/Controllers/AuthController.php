@@ -94,6 +94,7 @@ class AuthController extends Controller
             $payload = [
                 'iss' => "lumen-jwt", // Issuer of the token
                 'id' => $upja->id_admin, // Subject of the token
+                'role' => $upja->upja_role, // Subject of the token
                 'iat' => time(), // Time when JWT was issued. 
                 'exp' => time() + 60 * 60 // Expiration time
             ];
@@ -117,7 +118,7 @@ class AuthController extends Controller
 
     private function login_farmer($phone, $password)
     {
-        $farmer = MSFarmer::where('farmer_phone', '=', $phone)->first();
+        $farmer = MSFarmer::where('farmer_phone', '=', $phone)->where('farmer_status', '=', 'active')->where('farmer_hide', '=', 0)->first();
         if (!$farmer) {
             $response = [
                 "message" => "login_failed",
@@ -131,6 +132,7 @@ class AuthController extends Controller
             $payload = [
                 'iss' => "lumen-jwt", // Issuer of the token
                 'id' => $farmer->id_farmer, // Subject of the token
+                'role' => $farmer->farmer_role, // Subject of the token
                 'iat' => time(), // Time when JWT was issued. 
                 'exp' => time() + 60 * 60 // Expiration time
             ];

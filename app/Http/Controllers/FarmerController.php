@@ -33,6 +33,7 @@ class FarmerController extends Controller
             'farmer_id' => $request->farmer_id,
             'farmer_fullname' => $request->farmer_fullname,
             'farmer_password' =>  app('hash')->make($request->farmer_password),
+            'farmer_role' => 'farmer',
             'farmer_status' => 'inactive',
             'farmer_verified' => 0,
             'farmer_verify_code' => 0,
@@ -43,5 +44,51 @@ class FarmerController extends Controller
             "data" => $farmer
         ];
         return response()->json($data, 201);
+    }
+
+    public function farmer_status(Request $request, $id)
+    {
+        // dd($request);
+        $this->validate($request, [
+            'farmer_status' => 'required|string'
+        ]);
+        $farmer = MSFarmer::findOrFail($id);
+        try {
+            $farmer->update([
+                'farmer_status' => $request->farmer_status
+            ]);
+        } catch (\Exception $e) {
+            $respon = [
+                "message" => "can't change status"
+            ];
+            return response()->json($respon, 400);
+        }
+        $respon = [
+            "message" => "success"
+        ];
+        return response()->json($respon, 200);
+    }
+
+    public function farmer_hide(Request $request, $id)
+    {
+        $this->validate($request, [
+            'farmer_hide' => 'required|string|numeric'
+        ]);
+
+        $farmer = MSFarmer::findOrFail($id);
+        try {
+            $farmer->update([
+                'farmer_hide' => $request->farmer_hide
+            ]);
+        } catch (\Exception $e) {
+            $respon = [
+                "message" => "can't change hide code"
+            ];
+            return response()->json($respon, 400);
+        }
+        $respon = [
+            "message" => "success"
+        ];
+        return response()->json($respon, 200);
     }
 }

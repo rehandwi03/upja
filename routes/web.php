@@ -24,7 +24,6 @@ $router->group(
     ['middleware' => 'jwt.auth'],
     function () use ($router) {
         $router->group(['middleware' => 'admin'], function () use ($router) {
-            $router->get('/farmers', 'FarmerController@index');
         });
         // endpoint role
         $router->get('/roles', 'RoleController@index');
@@ -43,6 +42,9 @@ $router->group(
 
         // endpoint farmer
 
+        $router->get('/farmers', 'FarmerController@index');
         $router->post('/farmers', 'FarmerController@store');
+        $router->patch('/farmers/status/{id}', 'FarmerController@farmer_status');
+        $router->patch('/farmers/hide/{id}', 'FarmerController@farmer_hide');
     }
 );
