@@ -91,4 +91,27 @@ class FarmerController extends Controller
         ];
         return response()->json($respon, 200);
     }
+
+    public function verify_code(Request $request, $id)
+    {
+        $this->validate($request, [
+            'farmer_verify_code' => 'required|string'
+        ]);
+
+        $farmer = MSFarmer::findOrFail($id);
+        try {
+            $farmer->update([
+                'farmer_verify_code' => $request->farmer_verify_code
+            ]);
+        } catch (\Exception $e) {
+            $respon = [
+                "message" => "can't change verify code"
+            ];
+            return response()->json($respon, 400);
+        }
+        $respon = [
+            "message" => "success"
+        ];
+        return response()->json($respon, 200);
+    }
 }
