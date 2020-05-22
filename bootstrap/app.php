@@ -85,7 +85,8 @@ $app->routeMiddleware([
 ]);
 
 $app->middleware([
-    App\Http\Middleware\JsonRequestMiddleware::class
+    App\Http\Middleware\JsonRequestMiddleware::class,
+    App\Http\Middleware\CorsMiddleware::class
 ]);
 
 /*

@@ -5,6 +5,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /app
 COPY . /app
 RUN composer install
+RUN cp .env.example .env
+RUN sed -i 's/db_name/upja/g' .env
+RUN sed -i 's/db_user/root/g' .env
+RUN sed -i 's/db_password/akusayangmamah123/g' .env
 
-CMD php -S localhost:8080 -t public
+# CMD php -S localhost:8080 -t public
 EXPOSE 8080
