@@ -8,7 +8,7 @@ RUN composer install
 RUN cp .env.example .env
 RUN sed -i 's/db_name/upja/g' .env
 RUN sed -i 's/db_user/root/g' .env
-RUN sed -i 's/db_password/akusayangmamah123/g' .env
+RUN sed -i 's/db_password/password/g' .env
 
 # CMD php -S localhost:8080 -t public
 EXPOSE 8080
