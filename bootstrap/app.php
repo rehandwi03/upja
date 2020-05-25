@@ -81,7 +81,8 @@ $app->configure('app');
 // ]);
 $app->routeMiddleware([
     'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
-    'admin' => App\Http\Middleware\AdminMiddleware::class
+    'admin' => App\Http\Middleware\AdminMiddleware::class,
+    'farmer' => App\Http\Middleware\FarmerMiddleware::class
 ]);
 
 $app->middleware([
