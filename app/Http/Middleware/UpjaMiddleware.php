@@ -22,7 +22,7 @@ class UpjaMiddleware
                 'code' => 401,
                 'error' => 'Role not provided.'
             ];
-        } elseif ($role == "upja") {
+        } elseif ($role == "upja" || $role == "admin") {
             return $next($request);
         } else {
             return [
