@@ -51,7 +51,7 @@ class UpjaController extends Controller
                 'upja_fullname' => $request->upja_fullname,
                 'upja_email' => $request->upja_email,
                 'upja_phone' => $request->upja_phone,
-                'upja_password' => $request->upja_password,
+                'upja_password' => app('hash')->make($request->upja_password),
                 'upja_emergency_phone' => $request->upja_emergency_phone,
                 'upja_image' => $request->upja_image,
                 'upja_path' => $request->upja_path,
