@@ -27,30 +27,38 @@ $router->group(
             // endpoint role
             $router->get('/roles', 'RoleController@index');
             $router->post('/role', 'RoleController@store');
-            $router->patch('/role/{id}', 'RoleController@update');
-            $router->delete('/role/{id}', 'RoleController@destroy');
+            $router->patch('/role/update/{id}', 'RoleController@update');
+            $router->patch('/role/hide/{id}', 'RoleController@role_hide');
 
             // endpoint admin
             $router->get('/admins', 'AdminController@index');
             $router->post('/admin', 'AdminController@store');
             $router->patch('/admin/hide/{id}', 'AdminController@hide');
+            $router->patch('/admin/update/{id}', 'AdminController@update');
 
-            $router->group(['middleware' => 'farmer'], function () use ($router) {
-                // endpoint farmer
-                $router->get('/farmers', 'FarmerController@index');
-                $router->post('/farmer', 'FarmerController@store');
-                $router->patch('/farmer/status/{id}', 'FarmerController@farmer_status');
-                $router->patch('/farmer/hide/{id}', 'FarmerController@farmer_hide');
-                $router->patch('/farmer/verify/{id}', 'FarmerController@verify_code');
-            });
-            $router->group(['middleware' => 'upja'], function () use ($router) {
-                // endpoint upja
-                $router->get('/upjas', 'UpjaController@index');
-                $router->post('/upja', 'UpjaController@store');
-                $router->patch('/upja/status/{id}', 'UpjaController@upja_status');
-                $router->patch('/upja/verified/{id}', 'UpjaController@verified');
-                $router->patch('/upja/hide/{id}', 'UpjaController@upja_hide');
-            });
+            // endpoint bank
+            $router->get('/banks', 'BankController@index');
+            $router->post('/bank', 'BankController@store');
+            $router->patch('/bank/publish/{id}', 'BankController@bank_publish');
+            $router->patch('/bank/hide/{id}', 'BankController@bank_hide');
+        });
+
+        // endpoint farmer
+        $router->group(['middleware' => 'farmer'], function () use ($router) {
+            $router->get('/farmers', 'FarmerController@index');
+            $router->post('/farmer', 'FarmerController@store');
+            $router->patch('/farmer/status/{id}', 'FarmerController@farmer_status');
+            $router->patch('/farmer/hide/{id}', 'FarmerController@farmer_hide');
+            $router->patch('/farmer/verify/{id}', 'FarmerController@verify_code');
+        });
+
+        // endpoint upja
+        $router->group(['middleware' => 'upja'], function () use ($router) {
+            $router->get('/upjas', 'UpjaController@index');
+            $router->post('/upja', 'UpjaController@store');
+            $router->patch('/upja/status/{id}', 'UpjaController@upja_status');
+            $router->patch('/upja/verified/{id}', 'UpjaController@verified');
+            $router->patch('/upja/hide/{id}', 'UpjaController@upja_hide');
         });
     }
 );
