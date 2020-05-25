@@ -44,13 +44,13 @@ class RoleController extends Controller
         return response()->json($role, 200);
     }
 
-    public function destroy($id)
+    public function role_hide(Request $request, $id)
     {
         $role = MSRole::findOrFail($id);
-        $role->delete();
-        $data = [
-            "message" => "deleted"
-        ];
+        $role->update([
+            'role_hide' => $request->role_hide
+        ]);
+        $data = ["message" => "success"];
         return response()->json($data, 204);
     }
 }
