@@ -38,11 +38,11 @@ class AdminController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'id_admin' => 'required|string|numeric',
-            'id_role' => 'required|string|numeric',
-            'admin_username' => 'required|string',
+            'id_admin' => 'nullable|string|numeric',
+            'id_role' => 'nullable|string|numeric',
+            'admin_username' => 'nullable|string',
             'admin_password' => 'nullable|string',
-            'admin_fullname' => 'required|string'
+            'admin_fullname' => 'nullable|string'
         ]);
 
         $admin = MSAdmin::findOrFail($request->id_admin);
