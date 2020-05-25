@@ -24,35 +24,33 @@ $router->group(
     ['middleware' => 'jwt.auth'],
     function () use ($router) {
         $router->group(['middleware' => 'admin'], function () use ($router) {
+            // endpoint role
+            $router->get('/roles', 'RoleController@index');
+            $router->post('/role', 'RoleController@store');
+            $router->patch('/role/{id}', 'RoleController@update');
+            $router->delete('/role/{id}', 'RoleController@destroy');
+
+            // endpoint admin
+            $router->get('/admins', 'AdminController@index');
+            $router->post('/admin', 'AdminController@store');
+            $router->patch('/admin/hide/{id}', 'AdminController@hide');
+
+            $router->group(['middleware' => 'farmer'], function () use ($router) {
+                // endpoint farmer
+                $router->get('/farmers', 'FarmerController@index');
+                $router->post('/farmer', 'FarmerController@store');
+                $router->patch('/farmer/status/{id}', 'FarmerController@farmer_status');
+                $router->patch('/farmer/hide/{id}', 'FarmerController@farmer_hide');
+                $router->patch('/farmer/verify/{id}', 'FarmerController@verify_code');
+            });
+            $router->group(['middleware' => 'upja'], function () use ($router) {
+                // endpoint upja
+                $router->get('/upjas', 'UpjaController@index');
+                $router->post('/upja', 'UpjaController@store');
+                $router->patch('/upja/status/{id}', 'UpjaController@upja_status');
+                $router->patch('/upja/verified/{id}', 'UpjaController@verified');
+                $router->patch('/upja/hide/{id}', 'UpjaController@upja_hide');
+            });
         });
-        // endpoint role
-        $router->get('/roles', 'RoleController@index');
-        $router->post('/role', 'RoleController@store');
-        $router->patch('/role/{id}', 'RoleController@update');
-        $router->delete('/role/{id}', 'RoleController@destroy');
-
-        // endpoint admin
-        $router->get('/admins', 'AdminController@index');
-        $router->post('/admin', 'AdminController@store');
-        $router->post('/admin/hide/{id}', 'AdminController@hide');
-
-        // endpoint user
-        $router->get('/users', 'UserController@index');
-        $router->post('/user', 'UserController@store');
-
-        // endpoint farmer
-
-        $router->get('/farmers', 'FarmerController@index');
-        $router->post('/farmer', 'FarmerController@store');
-        $router->patch('/farmer/status/{id}', 'FarmerController@farmer_status');
-        $router->patch('/farmer/hide/{id}', 'FarmerController@farmer_hide');
-        $router->patch('/farmer/verify/{id}', 'FarmerController@verify_code');
-
-        // endpoint upja
-        $router->get('/upjas', 'UpjaController@index');
-        $router->post('/upja', 'UpjaController@store');
-        $router->patch('/upja/{id}', 'UpjaController@upja_status');
-        $router->patch('/upja/{id}', 'UpjaController@verified');
-        $router->patch('/upja/{id}', 'UpjaController@upja_hide');
     }
 );
