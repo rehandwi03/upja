@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\MSAdmin;
 use App\MSFarmer;
 use App\MSUpja;
-use App\User;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -33,11 +31,6 @@ class AuthController extends Controller
         if ($request->has('upja_phone')) {
             return $this->login_upja($request->upja_phone, $request->password);
         }
-    }
-
-    public function logout()
-    {
-        dd(JWT::getToken());
     }
 
     private function login_admin($username, $password)
