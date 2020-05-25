@@ -41,6 +41,12 @@ $router->group(
             $router->post('/bank', 'BankController@store');
             $router->patch('/bank/publish/{id}', 'BankController@bank_publish');
             $router->patch('/bank/hide/{id}', 'BankController@bank_hide');
+
+            // endpoint province
+            $router->get('/provinces', 'ProvinceController@index');
+            $router->post('/province', 'ProvinceController@store');
+            $router->patch('/province/hide/{id}', 'ProvinceController@province_hide');
+            $router->patch('/province/update/{id}', 'ProvinceController@update');
         });
 
         // endpoint farmer
