@@ -17,4 +17,9 @@ class MSRole extends Model
     {
         return $this->hasMany(MSAdmin::class, 'id_role');
     }
+
+    public function upja()
+    {
+        return $this->hasMany(MSUpja::class, 'id_role');
+    }
 }
