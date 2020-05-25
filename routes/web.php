@@ -27,25 +27,32 @@ $router->group(
         });
         // endpoint role
         $router->get('/roles', 'RoleController@index');
-        $router->post('/roles', 'RoleController@store');
-        $router->put('/roles/{id}', 'RoleController@update');
-        $router->delete('/roles/{id}', 'RoleController@destroy');
+        $router->post('/role', 'RoleController@store');
+        $router->patch('/role/{id}', 'RoleController@update');
+        $router->delete('/role/{id}', 'RoleController@destroy');
 
         // endpoint admin
         $router->get('/admins', 'AdminController@index');
-        $router->post('/admins', 'AdminController@store');
-        $router->post('/admins/hide/{id}', 'AdminController@hide');
+        $router->post('/admin', 'AdminController@store');
+        $router->post('/admin/hide/{id}', 'AdminController@hide');
 
         // endpoint user
         $router->get('/users', 'UserController@index');
-        $router->post('/users', 'UserController@store');
+        $router->post('/user', 'UserController@store');
 
         // endpoint farmer
 
         $router->get('/farmers', 'FarmerController@index');
-        $router->post('/farmers', 'FarmerController@store');
-        $router->patch('/farmers/status/{id}', 'FarmerController@farmer_status');
-        $router->patch('/farmers/hide/{id}', 'FarmerController@farmer_hide');
-        $router->patch('/farmers/verify/{id}', 'FarmerController@verify_code');
+        $router->post('/farmer', 'FarmerController@store');
+        $router->patch('/farmer/status/{id}', 'FarmerController@farmer_status');
+        $router->patch('/farmer/hide/{id}', 'FarmerController@farmer_hide');
+        $router->patch('/farmer/verify/{id}', 'FarmerController@verify_code');
+
+        // endpoint upja
+        $router->get('/upjas', 'UpjaController@index');
+        $router->post('/upja', 'UpjaController@store');
+        $router->patch('/upja/{id}', 'UpjaController@upja_status');
+        $router->patch('/upja/{id}', 'UpjaController@verified');
+        $router->patch('/upja/{id}', 'UpjaController@upja_hide');
     }
 );
