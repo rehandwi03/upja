@@ -38,7 +38,7 @@ class JwtMiddleware
         // $request->request->add(['auth' => ['id' => $credentials->id]]);
         $request->request->add([
             'id' => $credentials->id,
-            'role_name' => "anjay"
+            'role_name' => $credentials->role
         ]);
         return $next($request);
     }
