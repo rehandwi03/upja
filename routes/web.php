@@ -47,6 +47,12 @@ $router->group(
             $router->post('/province', 'ProvinceController@store');
             $router->patch('/province/hide/{id}', 'ProvinceController@province_hide');
             $router->patch('/province/update/{id}', 'ProvinceController@update');
+
+            //endpoint district
+            $router->get('/districts', 'DistrictController@index');
+            $router->post('/district', 'DistrictController@store');
+            $router->patch('/district/hide/{id}', 'DistrictController@district_hide');
+            $router->patch('/district/update/{id}', 'DistrictController@update');
         });
 
         // endpoint farmer
