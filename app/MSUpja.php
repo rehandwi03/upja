@@ -11,4 +11,9 @@ class MSUpja extends Model
     protected $table = 'ms_upja';
     protected $primaryKey = 'id_upja';
     protected $guarded = [];
+
+    public function role()
+    {
+        $this->belongsTo(MSRole::class, 'id_role');
+    }
 }
