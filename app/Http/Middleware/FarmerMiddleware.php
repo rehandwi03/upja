@@ -16,13 +16,14 @@ class FarmerMiddleware
     public function handle($request, Closure $next)
     {
         // Pre-Middleware Action
+        // dd($request);
         $role = $request->role_name;
         if (!$role) {
             return [
                 'code' => 401,
                 'error' => 'Role not provided.'
             ];
-        } elseif ($role == "farmer") {
+        } elseif ($role == "farmer" || $role == "admin") {
             return $next($request);
         } else {
             return [
