@@ -80,7 +80,14 @@ class AuthController extends Controller
 
     private function login_upja($phone, $password)
     {
-        $upja = MSUpja::where('upja_phone', '=', $phone)->first();
+        $upja = MSUpja::where(
+            [
+                ['upja_phone', '=', $phone],
+                ['upja_status', '=', 'active'],
+                ['upja_verified', '=', 1],
+                ['upja_hide', '=', 0]
+            ]
+        )->first();
         if (!$upja) {
             $response = [
                 "message" => "login_failed",
@@ -94,7 +101,7 @@ class AuthController extends Controller
             $payload = [
                 'iss' => "lumen-jwt", // Issuer of the token
                 'id' => $upja->id_admin, // Subject of the token
-                'role' => $upja->upja_role, // Subject of the token
+                'role' => $upja->role->role_name, // Subject of the token
                 'iat' => time(), // Time when JWT was issued. 
                 'exp' => time() + 60 * 60 // Expiration time
             ];
@@ -118,7 +125,13 @@ class AuthController extends Controller
 
     private function login_farmer($phone, $password)
     {
-        $farmer = MSFarmer::where('farmer_phone', '=', $phone)->where('farmer_status', '=', 'active')->where('farmer_hide', '=', 0)->first();
+        $farmer = MSFarmer::where(
+            [
+                ['farmer_phone', '=', $phone],
+                ['farmer_status', '=', 'active'],
+                ['farmer_hide', '=', 0]
+            ]
+        )->first();
         if (!$farmer) {
             $response = [
                 "message" => "login_failed",
