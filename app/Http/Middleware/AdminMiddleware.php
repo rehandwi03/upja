@@ -16,6 +16,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         // Pre-Middleware Action
+        // dd($request);
         $role = $request->role_name;
         if (!$role) {
             return [
