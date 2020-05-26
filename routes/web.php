@@ -77,6 +77,11 @@ $router->group(
             $router->post('/transport', 'TransportController@store');
             $router->patch('/transport/hide/{id}', 'TransportController@transport_hide');
             $router->patch('/transport/update/{id}', 'TransportController@update');
+
+            // endpoint trans
+            $router->get('/transactions', 'TransController@index');
+            $router->post('/transaction', 'TransController@store');
+            $router->patch('/transaction/status/{id}', 'TransController@trans_status');
         });
 
         // endpoint farmer
