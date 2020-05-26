@@ -71,6 +71,12 @@ $router->group(
             $router->get('/faddress', 'FAddressController@index');
             $router->get('/faddress/show/{id}', 'FAddressController@id_farmer');
             $router->post('/faddress', 'FAddressController@store');
+
+            // endpoint transport
+            $router->get('/transports', 'TransportController@index');
+            $router->post('/transport', 'TransportController@store');
+            $router->patch('/transport/hide/{id}', 'TransportController@transport_hide');
+            $router->patch('/transport/update/{id}', 'TransportController@update');
         });
 
         // endpoint farmer
