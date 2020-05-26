@@ -60,6 +60,12 @@ $router->group(
             $router->post('/subdistrict', 'SubdistrictController@store');
             $router->patch('/subdistrict/hide/{id}', 'SubdistrictController@subdistrict_hide');
             $router->patch('/subdistrict/update/{id}', 'SubdistrictController@update');
+
+            // endpoint village
+            $router->get('/villages', 'VillageController@index');
+            $router->post('/village', 'VillageController@store');
+            $router->patch('/village/hide/{id}', 'VillageController@village_hide');
+            $router->patch('/village/update/{id}', 'VillageController@update');
         });
 
         // endpoint farmer
