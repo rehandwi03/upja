@@ -66,6 +66,11 @@ $router->group(
             $router->post('/village', 'VillageController@store');
             $router->patch('/village/hide/{id}', 'VillageController@village_hide');
             $router->patch('/village/update/{id}', 'VillageController@update');
+
+            // endpoint farmer address
+            $router->get('/faddress', 'FAddressController@index');
+            $router->get('/faddress/show/{id}', 'FAddressController@id_farmer');
+            $router->post('/faddress', 'FAddressController@store');
         });
 
         // endpoint farmer
