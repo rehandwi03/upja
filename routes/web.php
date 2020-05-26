@@ -17,7 +17,8 @@ $router->get('/', function () use ($router) {
 // endpoint auth
 $router->post('/auth/login', 'AuthController@login');
 $router->get('/health', function () {
-    return "200 OK";
+    $respon = ["message" => "health"];
+    return response()->json($respon, 200);
 });
 
 $router->group(
@@ -53,6 +54,12 @@ $router->group(
             $router->post('/district', 'DistrictController@store');
             $router->patch('/district/hide/{id}', 'DistrictController@district_hide');
             $router->patch('/district/update/{id}', 'DistrictController@update');
+
+            // endpoint subdistrict
+            $router->get('/subdistricts', 'SubdistrictController@index');
+            $router->post('/subdistrict', 'SubdistrictController@store');
+            $router->patch('/subdistrict/hide/{id}', 'SubdistrictController@subdistrict_hide');
+            $router->patch('/subdistrict/update/{id}', 'SubdistrictController@update');
         });
 
         // endpoint farmer
