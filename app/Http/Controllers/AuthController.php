@@ -49,7 +49,7 @@ class AuthController extends Controller
             $payload = [
                 'iss' => "lumen-jwt", // Issuer of the token
                 'id' => $admin->id_admin, // Subject of the token
-                'role' => $admin->role->role_name,
+                'role' => "admin",
                 'iat' => time(), // Time when JWT was issued. 
                 'exp' => time() + 60 * 60 // Expiration time
             ];
@@ -94,7 +94,7 @@ class AuthController extends Controller
             $payload = [
                 'iss' => "lumen-jwt", // Issuer of the token
                 'id' => $upja->id_admin, // Subject of the token
-                'role' => $upja->role->role_name, // Subject of the token
+                'role' => "upja", // Subject of the token
                 'iat' => time(), // Time when JWT was issued. 
                 'exp' => time() + 60 * 60 // Expiration time
             ];
@@ -138,7 +138,7 @@ class AuthController extends Controller
             $payload = [
                 'iss' => "lumen-jwt", // Issuer of the token
                 'id' => $farmer->id_farmer, // Subject of the token
-                'role' => $farmer->farmer_role, // Subject of the token
+                'role' => "farmer", // Subject of the token
                 'iat' => time(), // Time when JWT was issued. 
                 'exp' => time() + 60 * 60 // Expiration time
             ];
