@@ -23,18 +23,6 @@ $router->get('/health', function () {
 $router->group(
     ['middleware' => 'jwt.auth'],
     function () use ($router) {
-        $router->get('/upjas', 'UpjaController@index');
-        $router->post('/upja', 'UpjaController@store');
-        $router->patch('/upja/status/{id}', 'UpjaController@upja_status');
-        $router->patch('/upja/verified/{id}', 'UpjaController@upja_verified');
-        $router->patch('/upja/hide/{id}', 'UpjaController@upja_hide');
-
-        // endpoint upja uom
-        $router->get('/upja/uoms', 'UpjaUomController@index');
-        $router->post('/upja/uom', 'UpjaUomController@store');
-        $router->patch('/upja/uom/hide/{id}', 'UpjaUomController@uom_hide');
-        $router->patch('/upja/uom/update/{id}', 'UpjaUomController@update');
-
         $router->group(['middleware' => 'admin'], function () use ($router) {
             // endpoint role
             $router->get('/roles', 'RoleController@index');
@@ -107,7 +95,17 @@ $router->group(
         // endpoint upja
         $router->group(['middleware' => 'upja'], function () use ($router) {
             // endpoint master upja
+            $router->get('/upjas', 'UpjaController@index');
+            $router->post('/upja', 'UpjaController@store');
+            $router->patch('/upja/status/{id}', 'UpjaController@upja_status');
+            $router->patch('/upja/verified/{id}', 'UpjaController@upja_verified');
+            $router->patch('/upja/hide/{id}', 'UpjaController@upja_hide');
 
+            // endpoint upja uom
+            $router->get('/upja/uoms', 'UpjaUomController@index');
+            $router->post('/upja/uom', 'UpjaUomController@store');
+            $router->patch('/upja/uom/hide/{id}', 'UpjaUomController@uom_hide');
+            $router->patch('/upja/uom/update/{id}', 'UpjaUomController@update');
         });
     }
 );

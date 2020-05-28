@@ -78,9 +78,10 @@ class AuthController extends Controller
                 ['upja_phone', '=', $phone],
                 ['upja_status', '=', 'active'],
                 ['upja_verified', '=', 1],
-                ['upja_hide', '=', 0]
+                ['upja_hide', '=', 1]
             ]
         )->first();
+        // dd($upja);
         if (!$upja) {
             $response = [
                 "message" => "login_failed",
