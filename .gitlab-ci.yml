@@ -6,4 +6,11 @@ before_script:
   - eval $(ssh-agent -s)
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
-  - '[[ -f /.dockerenv ]] && ssh-keyscan -H "156.67.214.146" > ~/.ssh/known_hosts'
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+deploy_staging:
+  type: deploy
+  script:
+    - echo "hello world"
+  only:
+    - master
