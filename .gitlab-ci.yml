@@ -11,6 +11,6 @@ before_script:
 deploy_staging:
   type: deploy
   script:
-    - ssh root@156.67.214.146 "cd /var/www/ && git checkout master && git pull origin master && exit"
+    - ssh root@156.67.214.146 "cd /var/www/ && rm -rf upja && git checkout master && git pull origin master && exit"
   only:
     - master
