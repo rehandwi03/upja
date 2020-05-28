@@ -3,11 +3,13 @@ services:
   - docker:dind
 
 stages:
-  - clone
-  - composer_install
-  - run
+  - before_script
 
 clone:
-  stage: clone
+  stage: before_script
   script:
-    - ssh root@${SERVER_IP} -p
+    - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && ssh-keyscan -H "156.67.214.146" > ~/.ssh/known_hosts'
