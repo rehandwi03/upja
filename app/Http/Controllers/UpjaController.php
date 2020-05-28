@@ -21,11 +21,10 @@ class UpjaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'id_province' => 'required|string|numeric',
-            'id_district' => 'required|string|numeric',
-            'id_subdistrict' => 'required|string|numeric',
-            'id_village' => 'required|string|numeric',
-            'id_role' => 'required|string|numeric',
+            'id_province' => 'required|numeric',
+            'id_district' => 'required|numeric',
+            'id_subdistrict' => 'required|numeric',
+            'id_village' => 'required|numeric',
             'upja_id' => 'required|string|max:10',
             'upja_fullname' => 'required|string|max:100',
             'upja_email' => 'required|string|max:50',
@@ -47,7 +46,6 @@ class UpjaController extends Controller
                 'id_district' => $request->id_district,
                 'id_subdistrict' => $request->id_subdistrict,
                 'id_village' => $request->id_village,
-                'id_role' => $request->id_role,
                 'upja_fullname' => $request->upja_fullname,
                 'upja_email' => $request->upja_email,
                 'upja_phone' => $request->upja_phone,
@@ -64,7 +62,7 @@ class UpjaController extends Controller
             ]);
         } catch (\Exception $e) {
             $respon = [
-                "message" => "error",
+                "message" => $e->getMessage(),
             ];
             return response()->json($respon, 400);
         }
@@ -81,9 +79,9 @@ class UpjaController extends Controller
             $upja->update([
                 'upja_status' => $request->upja_status
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             $respon = [
-                "message" => "error"
+                "message" => $e->getMessage()
             ];
             return response()->json($respon, 400);
         }

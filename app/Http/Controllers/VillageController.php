@@ -49,10 +49,8 @@ class VillageController extends Controller
         $this->validate($request, [
             'village_hide' => 'required|string|numeric'
         ]);
-
-        $village = MSVillage::findOrFail($id);
-
         try {
+            $village = MSVillage::findOrFail($id);
             $village->update([
                 'village_hide' => $request->village_hide
             ]);

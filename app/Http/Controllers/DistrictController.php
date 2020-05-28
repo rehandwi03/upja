@@ -36,7 +36,7 @@ class DistrictController extends Controller
             $respon = ["message" => "error"];
         }
         $respon = ["message" => "success"];
-        return response()->json($respon, 200, $headers);
+        return response()->json($respon, 200);
     }
 
     public function district_hide(Request $request, $id)

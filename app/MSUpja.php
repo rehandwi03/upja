@@ -11,6 +11,7 @@ class MSUpja extends Model
     protected $table = 'ms_upja';
     protected $primaryKey = 'id_upja';
     protected $guarded = [];
+    protected $hidden = ['upja_password'];
 
     public function role()
     {

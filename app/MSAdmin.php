@@ -12,6 +12,7 @@ class MSAdmin extends Model
     protected $table = 'ms_admin';
     protected $primaryKey = 'id_admin';
     protected $fillable = ['admin_username', 'admin_password', 'admin_fullname', 'admin_hide', 'id_role'];
+    protected $hidden = ['admin_password'];
 
     public function role()
     {
