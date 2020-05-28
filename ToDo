@@ -1,0 +1,7 @@
+1. Tambahin field id_role di table upja, farmer tambahin field role_name
+2. Di login farmer sama upja tambahin payload role_name
+3. Buat middleware endpoint untuk upja sama farmer
+
+1. upja_oum itu untuk menyimpan data master satuan tanah (m2) atau irigasi (per-jam)
+2. abis itu melakukan order maka data order transaksi disimpan dalam ms_trans dan data olah tanah disimpan disimpan dalam tabel upja_tillage, ms_trans digunakan untuk mencatat kode transaksi
+3. upja

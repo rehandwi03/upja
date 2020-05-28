@@ -1,0 +1,13 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - clone
+  - composer_install
+  - run
+
+clone:
+  stage: clone
+  script:
+    - ssh root@${SERVER_IP} -p
