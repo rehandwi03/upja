@@ -78,7 +78,7 @@ class AuthController extends Controller
                 ['upja_phone', '=', $phone],
                 ['upja_status', '=', 'active'],
                 ['upja_verified', '=', 1],
-                ['upja_hide', '=', 1]
+                ['upja_hide', '=', 0]
             ]
         )->first();
         // dd($upja);
