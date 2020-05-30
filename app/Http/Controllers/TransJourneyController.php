@@ -39,7 +39,8 @@ class TransJourneyController extends Controller
                 'tjourney_author_id' => $request->tjourney_author_id,
                 'tjourney_author' => $request->tjourney_author,
                 'tjourney_status' => $request->tjourney_status,
-                'tjourney_content' => $request->tjourney_content
+                'tjourney_content' => $request->tjourney_content,
+                'tjourney_created' => date('y-m-d')
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -69,6 +70,7 @@ class TransJourneyController extends Controller
                 'tjourney_author' => $request->tjourney_author,
                 'tjourney_status' => $request->tjourney_status,
                 'tjourney_content' => $request->tjourney_content,
+
             ]);
         } catch (\Exception $e) {
             return response()->json([
