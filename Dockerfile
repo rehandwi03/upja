@@ -9,7 +9,7 @@ RUN cp .env.example .env
 RUN sed -i 's/db_host/172.17.0.1/g' .env
 RUN sed -i 's/db_name/upja/g' .env
 RUN sed -i 's/db_user/root/g' .env
-RUN sed -i 's/db_password/password/g' .env
+RUN sed -i 's/db_password/P@ssw0rd/g' .env
 RUN php artisan key:generate
 
 CMD php -S 0.0.0.0:8080 -t public
