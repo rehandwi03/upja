@@ -6,6 +6,7 @@ WORKDIR /app
 COPY . /app
 RUN composer install
 RUN cp .env.example .env
+RUN sed -i 's/db_host/172.17.0.1/g' .env
 RUN sed -i 's/db_name/upja/g' .env
 RUN sed -i 's/db_user/root/g' .env
 RUN sed -i 's/db_password/password/g' .env
