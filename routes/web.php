@@ -23,6 +23,11 @@ $router->get('/health', function () {
 $router->group(
     ['middleware' => 'jwt.auth'],
     function () use ($router) {
+        // endpoint trans journey
+        $router->get('/transjourneys', 'TransJourneyController@index');
+        $router->post('/transjourney', 'TransJourneyController@store');
+        $router->patch('/transjourney/update/{id}', 'TransJourneyController@update');
+
         $router->group(['middleware' => 'admin'], function () use ($router) {
             // endpoint role
             $router->get('/roles', 'RoleController@index');
